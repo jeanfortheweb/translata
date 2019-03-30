@@ -21,7 +21,7 @@ yarn add @translata/core
 
 ## Usage
 
-A translator is created by using the `createTransaltor` function. It takes a variable number of middlewares to create the translation function you want.
+A translator is created by using the `createTranslator` function. It takes a variable number of middlewares to create the translation function you want.
 
 In the most simple case, you just need to define a default locale and a set of translation strings:
 
