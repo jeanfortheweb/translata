@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.0...@translata/node@0.2.1) (2019-03-30)
+
+
+### Fix
+
+* Force publish of node ([85ca6adb9f284b2c9bf0cadd2d2110b494510aba](https://github.com/jeanfortheweb/translata/commit/85ca6adb9f284b2c9bf0cadd2d2110b494510aba))
+
+
+
+
+
 # [0.2.0](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.0.1...@translata/node@0.2.0) (2019-03-30)
 
 
