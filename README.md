@@ -2,19 +2,18 @@
 
 # Translata - The Composable Translation Utility
 
-Translata was created when I realized that all current i18n utilities avaible are outdated, had features I don't need, or where unusable (in a smooth way) in modular environments. So I decided
-to create a utility based on functional principles with some goals:
+**Translata** was created when I struggled with the current i18n utilities avaible. They seem outdated, had features I don't need, or where unusable (in a smooth way) in modular environments. So I decided to create a utility based on functional principles with some simple goals:
 
-- Composable - Decide which features you need and in which environment.
-- Independend - It should not rely on any scope by itself, also it should be possible to create
-  multiple independend translators.
-- Easy to use - Based on a middleware pattern, it should be possible to mix and match a setup with minimal effort.
+- **Modular** - Decide which features you need and in which environment.
+- **Independend** - No global scope, no mutations, no singletons. Create as many translators as you like.
+- **Easy** - It should be possible to mix and match a setup with minimal effort.
 
-Translata is completely written in TypeScript.
+**Translata** is completely written in TypeScript and supports advanced typings.
 
 ## Installation
 
-For the most simple use cases, you just have to install the core package:
+For the most simple use cases, you just have to install the core package. It will give you the `createTranslator` function plus
+all those middlewares you need to get started:
 
 ```sh
 yarn add @translata/core
@@ -22,7 +21,7 @@ yarn add @translata/core
 
 ## Usage
 
-A translator is created by using the `createTransaltor` function. It takes a number of middlewares to create the translation function you actually need.
+A translator is created by using the `createTranslator` function. It takes a variable number of middlewares to create the translation function you want.
 
 In the most simple case, you just need to define a default locale and a set of translation strings:
 
@@ -60,4 +59,3 @@ _('user.greeting', { locale: 'de' }); // Willkommen bei Translata!
 For a full documentation, just checkout the `README.md` files for each package, since they will go into detail for each scope:
 
 - [@translata/core](./packages/core/README.md)
-- [@translata/node](./packages/node/README.md)
