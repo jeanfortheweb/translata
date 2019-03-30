@@ -1,13 +1,27 @@
 import { LocaleOptions } from './locale';
 import { Middleware } from '..';
 
-export interface PlaceholderOptions extends LocaleOptions {
-  values?: { [key: string]: any };
+export interface ValueCallback<Context> {
+  (values: Context): string;
+}
+export type ValueMap<Context> = {
+  [key: string]: string | ValueCallback<Context>;
+};
+
+export interface PlaceholderOptions<
+  Values extends ValueMap<Context> = {},
+  Context = any
+> extends LocaleOptions {
+  values?: Values;
+  context?: Context;
 }
 
-export function withPlaceholders(
-  values: PlaceholderOptions['values'] = {},
-): Middleware<PlaceholderOptions> {
+export function withPlaceholders(): Middleware<PlaceholderOptions>;
+export function withPlaceholders<Context>(
+  values: ValueMap<Context>,
+): Middleware<PlaceholderOptions<typeof values, Context>>;
+
+export function withPlaceholders(values = {}): Middleware<PlaceholderOptions> {
   return next => (id, options) => {
     const translated = next(id, options);
     const merged = {
@@ -20,7 +34,7 @@ export function withPlaceholders(
         (replaced, [name, value]) =>
           replaced.replace(
             `\{\{${name}\}\}`,
-            typeof value === 'function' ? value() : value,
+            typeof value === 'function' ? value(options.context) : value,
           ),
         translated,
       );

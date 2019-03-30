@@ -162,6 +162,29 @@ const _ = createTranslator(
 _('date.now'); // Current date is Sat Mar 30 2019
 ```
 
+You can even pass a context as inline option, which will then passed as argument to value callbacks:
+
+```ts
+import {
+  createTranslator,
+  withTranslations,
+  withDefaultLocale,
+  withPlaceholders,
+} from '@translata/core';
+
+const _ = createTranslator(
+  withTranslations('en', {
+    'goto.user': 'Watch the profile here: {{link}}',
+  }),
+  withDefaultLocale('en')
+  withPlaceholders({
+      link: (id: number) => `http://www.my-community.com/users/${id}`
+  }),
+);
+
+_('goto.user', { context: 124 }); // Watch the profile here: http://www.my-community.com/users/124
+```
+
 ### `withLogger(logger?: (id: string, options: LocaleOptions) => void)`
 
 Will log missing translations with `console.warn`.

@@ -33,7 +33,9 @@ describe('withPlaceholders', () => {
 
     const translated = middleware(next)('translation.id', {
       locale: 'en',
-      values: { name: 'Wilson' },
+      values: {
+        name: 'Wilson',
+      },
     });
 
     expect(next).toHaveBeenCalledWith('translation.id', {
@@ -42,6 +44,52 @@ describe('withPlaceholders', () => {
     });
 
     expect(translated).toEqual("I'm sorry Ms. Wilson");
+  });
+
+  it('should pass values to value callback', () => {
+    interface Context {
+      name: string;
+    }
+
+    const next = jest.fn(() => 'The sentence is: {{sentence}}');
+    const middleware = withPlaceholders({
+      sentence: (values: Context) =>
+        values.name === 'Jackson' ? "I'm sorry Ms. Jackson" : 'Oh Mrs. Wilson!',
+    });
+
+    let translated;
+
+    translated = middleware(next)('translation.id', {
+      locale: 'en',
+      context: {
+        name: 'Jackson',
+      },
+    });
+
+    expect(next).toHaveBeenCalledWith('translation.id', {
+      locale: 'en',
+      context: {
+        name: 'Jackson',
+      },
+    });
+
+    expect(translated).toEqual("The sentence is: I'm sorry Ms. Jackson");
+
+    translated = middleware(next)('translation.id', {
+      locale: 'en',
+      context: {
+        name: 'Wilson',
+      },
+    });
+
+    expect(next).toHaveBeenCalledWith('translation.id', {
+      locale: 'en',
+      context: {
+        name: 'Wilson',
+      },
+    });
+
+    expect(translated).toEqual('The sentence is: Oh Mrs. Wilson!');
   });
 
   it('should do nothing if translated is undefined', () => {
