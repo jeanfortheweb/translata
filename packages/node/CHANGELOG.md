@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.1...@translata/node@0.2.2) (2019-03-30)
+
+
+### Fix
+
+* Remove unused peer dependecies ([5f88c56cecbf3f8b8b2d1ed96661c788c189cf07](https://github.com/jeanfortheweb/translata/commit/5f88c56cecbf3f8b8b2d1ed96661c788c189cf07))
+
+
+
+
+
 ## [0.2.1](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.0...@translata/node@0.2.1) (2019-03-30)
 
 
