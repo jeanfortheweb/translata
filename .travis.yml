@@ -46,3 +46,8 @@ jobs:
       script:
         - lerna version --conventional-commits --changelog-preset eslint --yes --allow-branch next
         - lerna publish from-package --yes
+      after_script:
+        - git push
+        - git checkout master
+        - git merge next
+        - git push
