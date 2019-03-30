@@ -960,8 +960,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@translata/core@file:packages/core":
-  version "0.0.0"
+"@translata/core@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@translata/core/-/core-0.2.0.tgz#f62e9c07ee84afbc1e9f4585c7ba403f7a8c6fa1"
+  integrity sha512-gGbBvFblxDVTi8dSKjyCLJAOzRA24aL4z4VLLPS726IYTMMwxnJGjD5CcNBIMgyq1o7zY+NLaU0iz9aOZcSItw==
 
 "@types/babel__core@^7.1.0":
   version "7.1.0"
