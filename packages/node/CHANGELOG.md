@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Fix
 
+* Dependency versions ([0523ac5b18ee4018f7fc2db0424e45f91395a7cb](https://github.com/jeanfortheweb/translata/commit/0523ac5b18ee4018f7fc2db0424e45f91395a7cb))
+* Remove unused peer dependecies ([5f88c56cecbf3f8b8b2d1ed96661c788c189cf07](https://github.com/jeanfortheweb/translata/commit/5f88c56cecbf3f8b8b2d1ed96661c788c189cf07))
+
+
+
+
+
+## [0.2.2](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.1...@translata/node@0.2.2) (2019-03-30)
+
+
+### Fix
+
 * Remove unused peer dependecies ([5f88c56cecbf3f8b8b2d1ed96661c788c189cf07](https://github.com/jeanfortheweb/translata/commit/5f88c56cecbf3f8b8b2d1ed96661c788c189cf07))
 
 
