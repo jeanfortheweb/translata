@@ -20,7 +20,8 @@ install:
   - git remote set-url origin "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
   - yarn
   - lerna bootstrap
-  - lerna run compile
+  - lerna run compile:cjs
+  - lerna run compile:esm
 
 jobs:
   include:
@@ -45,5 +46,3 @@ jobs:
       script:
         - lerna version --conventional-commits --changelog-preset eslint --yes --allow-branch next
         - lerna publish from-package --yes
-      after_script:
-        - git push

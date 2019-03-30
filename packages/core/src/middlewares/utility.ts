@@ -1,10 +1,6 @@
 import { LocaleOptions } from './locale';
 import { Middleware } from '..';
 
-/**
- *
- * @param logger
- */
 export function withLogger(
   logger?: (id: string, options: LocaleOptions) => void,
 ): Middleware<LocaleOptions> {

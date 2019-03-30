@@ -1,7 +1,8 @@
 {
   "name": "@translata/core",
-  "version": "0.1.1",
-  "main": "lib/index.js",
+  "version": "0.0.0",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
   "license": "MIT",
   "files": [
     "lib"
@@ -10,6 +11,7 @@
     "access": "public"
   },
   "scripts": {
-    "compile": "rm -rf lib && tsc --p tsconfig.publish.json"
+    "compile:cjs": "rm -rf lib/cjs && tsc --p tsconfig.cjs.json",
+    "compile:esm": "rm -rf lib/esm && tsc --p tsconfig.esm.json"
   }
 }
