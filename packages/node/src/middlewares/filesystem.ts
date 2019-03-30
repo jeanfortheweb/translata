@@ -5,12 +5,11 @@ import {
   Translations,
   combineMiddlewares,
 } from '@translata/core';
-import { parse } from 'yaml';
 import { readFileSync } from 'fs';
-import { sync } from 'glob';
 import { relative } from 'path';
 
 function load(path: string) {
+  const { parse } = require('yaml');
   const loaders = [
     {
       supports: (path: string) => path.endsWith('.json'),
@@ -80,6 +79,8 @@ export function withTranslationDirectory(
   directory: string,
   options: TranslationDirectoryOptions = {},
 ): Middleware<LocaleOptions> {
+  const glob = require('glob');
+  const sync = glob.sync as (pattern: string, options: any) => string[];
   const [pattern, names] = regex(
     options.pattern || '{{namespace}}.{{locale}}.(json|yaml|yml)',
   );
