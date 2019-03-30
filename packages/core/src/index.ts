@@ -10,59 +10,30 @@ export interface Middleware<Options = any> {
   (next: Translate<Options>): Translate<Options>;
 }
 
-export interface Translator<MiddlewareOptions = any> {
+export interface Translator<Options> {
   (id: string): MaybeTranslated;
-  (id: string, options: MiddlewareOptions): MaybeTranslated;
+  (id: string, options: Options): MaybeTranslated;
 }
 
-export function createTranslator(): Translator;
-
-export function createTranslator<Options1>(
-  middleware1: Middleware<Options1>,
-): Translator<Options1>;
-
-export function createTranslator<Options1, Options2>(
-  middleware1: Middleware<Options1>,
-  middleware2: Middleware<Options2>,
-): Translator<Options1 & Options2>;
-
-export function createTranslator<Options1, Options2, Options3>(
-  middleware1: Middleware<Options1>,
-  middleware2: Middleware<Options2>,
-  middleware3: Middleware<Options3>,
-): Translator<Options1 & Options2 & Options3>;
-
-export function createTranslator<Options1, Options2, Options3, Options4>(
-  middleware1: Middleware<Options1>,
-  middleware2: Middleware<Options2>,
-  middleware3: Middleware<Options3>,
-  middleware4: Middleware<Options4>,
-): Translator<Options1 & Options2 & Options3 & Options4>;
-
-export function createTranslator<
-  Options1,
-  Options2,
-  Options3,
-  Options4,
-  Options5
->(
-  middleware1: Middleware<Options1>,
-  middleware2: Middleware<Options2>,
-  middleware3: Middleware<Options3>,
-  middleware4: Middleware<Options4>,
-  middleware5: Middleware<Options5>,
-): Translator<Options1 & Options2 & Options3 & Options4 & Options5>;
+type ExtractOptions<U> = (U extends Middleware<infer Options>
+  ? (k: Options) => void
+  : never) extends ((k: infer I) => void)
+  ? I
+  : never;
 
 /**
  * Creates a new translator function using multiple translator middlewares.
  *
  * Keep in mind that the order of middlewares often matters. As a
- * rule of thumb, the first middlewares should add translation string,
- * followed by middlewares to configure the locale.
+ * rule of thumb, the first middlewares should add translation strings to the translator,
+ * followed by middlewares to configure or manipulate the locale settings. Middlewares that
+ * possibly transform or manipulate the resolved translation string should be the last.
  *
- * @param middlewares Middlewares.
+ * @param middlewares Middlewares to use.
  */
-export function createTranslator(...middlewares: Middleware[]): Translator {
+export function createTranslator<Middlewares extends Array<Middleware>>(
+  ...middlewares: Middlewares
+): Translator<ExtractOptions<Middlewares[number]>> {
   const get = middlewares.reduce(
     (next, current) => current(next),
     (id: string, options: any): MaybeTranslated => undefined,
