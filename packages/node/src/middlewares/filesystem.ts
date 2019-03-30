@@ -9,7 +9,6 @@ import { readFileSync } from 'fs';
 import { relative } from 'path';
 
 function load(path: string) {
-  const { parse } = require('yaml');
   const loaders = [
     {
       supports: (path: string) => path.endsWith('.json'),
@@ -18,7 +17,9 @@ function load(path: string) {
     {
       supports: (path: string) =>
         path.endsWith('.yml') || path.endsWith('.yaml'),
-      load: (path: string) => parse(readFileSync(path).toString()),
+      load: (path: string) => {
+        return require('yaml').parse(readFileSync(path).toString());
+      },
     },
   ];
 
