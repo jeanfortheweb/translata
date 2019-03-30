@@ -1,0 +1,30 @@
+{
+  "name": "@translata/node",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@translata/core": "0.0.0",
+    "chokidar": "^2.1.5",
+    "glob": "^7.1.3",
+    "yaml": "^1.4.0"
+  },
+  "devDependencies": {
+    "@translata/core": "0.0.0",
+    "@types/chokidar": "^2.1.3",
+    "@types/glob": "^7.1.1",
+    "@types/yaml": "^1.0.2",
+    "chokidar": "^2.1.5",
+    "glob": "^7.1.3",
+    "yaml": "^1.4.0"
+  },
+  "scripts": {
+    "compile": "rm -rf lib && tsc --p tsconfig.publish.json"
+  }
+}
