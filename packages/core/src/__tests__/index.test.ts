@@ -1,4 +1,9 @@
-import { createTranslator } from '..';
+import { createTranslator, combineMiddlewares } from '..';
+import {
+  withTranslations,
+  withDefaultLocale,
+  withPlaceholders,
+} from '../middlewares';
 
 describe('createTranslator', () => {
   it('should compose a translator function from middlewares', () => {
@@ -19,5 +24,39 @@ describe('createTranslator', () => {
 
     expect(middleware).toHaveBeenCalled();
     expect(translated).not.toBeDefined();
+  });
+});
+
+describe('combineMiddlewares', () => {
+  it('should call combined middleswares as expected', () => {
+    const combined = combineMiddlewares(
+      withTranslations('en', {
+        'global.greeting': 'Hello {{name}}!',
+      }),
+      withDefaultLocale('en'),
+    );
+
+    const translator = createTranslator(
+      withTranslations('en', {
+        'global.goodbye': 'Goodbye, {{name}}!',
+      }),
+      combined,
+      withPlaceholders(),
+    );
+
+    const greeting = translator('global.greeting', {
+      values: {
+        name: 'John Doe',
+      },
+    });
+
+    const goodbye = translator('global.goodbye', {
+      values: {
+        name: 'John Doe',
+      },
+    });
+
+    expect(greeting).toEqual('Hello John Doe!');
+    expect(goodbye).toEqual('Goodbye, John Doe!');
   });
 });

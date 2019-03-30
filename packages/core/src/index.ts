@@ -31,7 +31,7 @@ type ExtractOptions<U> = (U extends Middleware<infer Options>
  *
  * @param middlewares Middlewares to use.
  */
-export function createTranslator<Middlewares extends Array<Middleware>>(
+export function createTranslator<Middlewares extends Middleware[]>(
   ...middlewares: Middlewares
 ): Translator<ExtractOptions<Middlewares[number]>> {
   const get = middlewares.reduce(
@@ -41,5 +41,19 @@ export function createTranslator<Middlewares extends Array<Middleware>>(
 
   return (id: string, options: any = {}) => {
     return get(id, options);
+  };
+}
+
+export function combineMiddlewares<Middlewares extends Middleware[]>(
+  ...middlewares: Middlewares
+): Middleware<ExtractOptions<Middlewares[number]>> {
+  let forwardedNext: Translate<any>;
+  const forward: Middleware = () => (id, options) => forwardedNext(id, options);
+  const translator = createTranslator(forward, ...middlewares);
+
+  return next => (id, options) => {
+    forwardedNext = next;
+
+    return translator(id, options);
   };
 }
