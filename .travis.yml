@@ -31,7 +31,7 @@ jobs:
         - chmod +x ./cc-test-reporter
         - ./cc-test-reporter before-build
       script:
-        - lerna run test --parallel
+        - yarn run test
       after_script:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
         - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
