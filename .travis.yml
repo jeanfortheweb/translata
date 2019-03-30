@@ -43,12 +43,9 @@ jobs:
         - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
         - git checkout next
         - lerna version --conventional-commits --changelog-preset eslint --yes --allow-branch next
-        - git checkout master
-        - git merge next
-        - git push
 
     - stage: publish
-      if: tag IS NOT blank AND != pull_request
+      if: tag IS NOT blank AND type != pull_request
       script:
         - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
         - lerna publish from-package --yes
