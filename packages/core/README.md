@@ -9,9 +9,9 @@ as basic middlewares for locales, translations and placeholder patterns.
 yarn add @translata/core
 ```
 
-# Documentation
+## Documentation
 
-## `createTranslator(...middlewares: Middleware[])`
+### `createTranslator(...middlewares: Middleware[])`
 
 Create a translator function from middlewares. The order of middlewares matters.
 As a rule of thumb you should order them:
@@ -32,7 +32,7 @@ const _ = createTranslator(
 _('user.greeting', { locale: 'en' }); // Welcome to Translata!
 ```
 
-## `withDefaultLocale(locale: string)`
+### `withDefaultLocale(locale: string)`
 
 Sets a default locale when no other is given.
 
@@ -45,7 +45,7 @@ _('translation_id'); // { locale: 'en' } will be present in options.
 _('translation_id', { locale: 'fr' }); // { locale: 'fr' } will be present in options.
 ```
 
-## `withFallbackLocale(locale: string)`
+### `withFallbackLocale(locale: string)`
 
 Overrides the current locale present when the translation resulted in `undefined`.
 
@@ -63,7 +63,7 @@ _('user.greeting', { locale: 'fr' }); // { locale: 'en' } will be used and resul
 _('user.greeting', { locale: 'fr', fallback: 'en' }); // Fallback can also be set in options and has priority.
 ```
 
-## `withTranslations(locale: string, translations: { [key: string]: string})`
+### `withTranslations(locale: string, translations: { [key: string]: string})`
 
 Injects translation strings.
 It takes the target locale and a map of translation strings, where the key is the translation id.
@@ -90,7 +90,7 @@ _('user.greeting', { locale: 'de' }); // Willkommen bei Translata!
 _('user.greeting', { locale: 'fr' }); // undefined
 ```
 
-## `withPlaceholders(values?: { [key: string]: any })`
+### `withPlaceholders(values?: { [key: string]: any })`
 
 Gives translation strings the ability to contain placeholders.
 This middleware should always come after middlewares that find translation strings or manipulate locales.
@@ -162,7 +162,7 @@ const _ = createTranslator(
 _('date.now'); // Current date is Sat Mar 30 2019
 ```
 
-## `withLogger(logger?: (id: string, options: LocaleOptions) => void)`
+### `withLogger(logger?: (id: string, options: LocaleOptions) => void)`
 
 Will log missing translations with `console.warn`.
 
@@ -188,7 +188,7 @@ const _ = createTranslator(
 _('global.greeting', { locale: 'en' }); // Will log: No translation for global.greeting (locale = en)!
 ```
 
-## `withFallbackTranslation(translate: (id: string, options: LocaleOptions) => string)`
+### `withFallbackTranslation(translate: (id: string, options: LocaleOptions) => string)`
 
 When a translation is missing, the given translate callback is used to determine a fallback translation string.
 
