@@ -1,0 +1,54 @@
+if: tag IS blank
+language: node_js
+node_js:
+  - 'lts/*'
+
+env:
+  global:
+    - CC_TEST_REPORTER_ID=830de96674e458ee842cd4072ca84b4c4d44516d65a044efeb591fe12e593cfb
+
+cache:
+  yarn: true
+
+before_install:
+  - export PATH=$HOME/.yarn/bin:$PATH
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+
+install:
+  - git config --global user.email $GITHUB_EMAIL
+  - git config --global user.name $GITHUB_USER
+  - git remote set-url origin "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
+  - yarn
+  - lerna bootstrap
+  - lerna run compile
+
+jobs:
+  include:
+    - stage: test
+      if: tag IS blank and branch != next
+      before_script:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
+      script:
+        - lerna run test --parallel
+      after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+        - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
+        - ./cc-test-reporter upload-coverage
+
+    - stage: version
+      if: tag IS blank AND branch = next AND type != pull_request
+      script:
+        - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+        - git checkout next
+        - lerna version --conventional-commits --changelog-preset eslint --yes --allow-branch next
+        - git checkout master
+        - git merge next
+        - git push
+
+    - stage: publish
+      if: tag IS NOT blank AND != pull_request
+      script:
+        - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+        - lerna publish from-package --yes

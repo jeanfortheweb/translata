@@ -1,0 +1,15 @@
+{
+  "name": "@translata/template",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "compile": "rm -rf lib && tsc --p tsconfig.publish.json"
+  }
+}

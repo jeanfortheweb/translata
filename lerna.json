@@ -1,0 +1,12 @@
+{
+  "packages": ["packages/core"],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "lerna": "3.13.0",
+  "command": {
+    "publish": {
+      "ignoreChanges": ["*.md", "*.txt", "__tests__/**"]
+    }
+  }
+}
