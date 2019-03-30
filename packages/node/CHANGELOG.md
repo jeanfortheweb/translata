@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.3...@translata/node@0.2.4) (2019-03-30)
+
+
+### Fix
+
+* Require yaml when its needed ([77f74bd798e9f654782529fc01ec03bf2224ac83](https://github.com/jeanfortheweb/translata/commit/77f74bd798e9f654782529fc01ec03bf2224ac83))
+
+
+
+
+
 ## [0.2.3](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.2...@translata/node@0.2.3) (2019-03-30)
 
 
