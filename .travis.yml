@@ -18,7 +18,7 @@ install:
   - git config --global user.email $GITHUB_EMAIL
   - git config --global user.name $GITHUB_USER
   - git remote set-url origin "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
-  - yarn
+  - yarn global add lerna
   - lerna bootstrap
   - lerna run compile:cjs
   - lerna run compile:esm
