@@ -43,6 +43,8 @@ jobs:
       before_script:
         - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
         - git checkout next
+        - git reset --hard
+        - git pull
       script:
         - lerna publish  --conventional-commits --changelog-preset eslint --yes --allow-branch next
         - git push
