@@ -1,6 +1,6 @@
 # @translata/core
 
-Provides the core functionality for Translata. This includes the actual factory function `createTranslator`
+Provides the core functionality for **Translata**. This includes the actual factory function `createTranslator`
 as basic middlewares for locales, translations and placeholder patterns.
 
 ## Installation

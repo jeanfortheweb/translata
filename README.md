@@ -59,3 +59,4 @@ _('user.greeting', { locale: 'de' }); // Willkommen bei Translata!
 For a full documentation, just checkout the `README.md` files for each package, since they will go into detail for each scope:
 
 - [@translata/core](./packages/core/README.md)
+- [@translata/node](./packages/node/README.md)
