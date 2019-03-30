@@ -81,7 +81,7 @@ export function withTranslationDirectory(
   options: TranslationDirectoryOptions = {},
 ): Middleware<LocaleOptions> {
   const [pattern, names] = regex(
-    options.pattern || '{{namespace}}.{{locale}}.json',
+    options.pattern || '{{namespace}}.{{locale}}.(json|yaml|yml)',
   );
 
   return combineMiddlewares(
