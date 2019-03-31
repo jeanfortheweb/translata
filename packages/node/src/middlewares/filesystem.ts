@@ -9,21 +9,18 @@ import { readFileSync } from 'fs';
 import { relative } from 'path';
 
 function load(path: string) {
-  const loaders = [
+  const loader = [
     {
-      supports: (path: string) => path.endsWith('.json'),
+      supported: path.endsWith('.json'),
       load: (path: string) => require(path),
     },
     {
-      supports: (path: string) =>
-        path.endsWith('.yml') || path.endsWith('.yaml'),
+      supported: path.endsWith('.yml') || path.endsWith('.yaml'),
       load: (path: string) => {
         return require('yaml').parse(readFileSync(path).toString());
       },
     },
-  ];
-
-  const loader = loaders.find(({ supports }) => supports(path));
+  ].find(({ supported }) => supported);
 
   if (loader === undefined) {
     throw new Error(`File type for ${path} is not supported.`);
@@ -42,7 +39,7 @@ function prefix(namespace: string, translations: Translations) {
   );
 }
 
-function regex(pattern: string): [string, string[]] {
+function pattern(pattern: string): [string, string[]] {
   let names: string[] = [];
 
   const regex = pattern
@@ -82,7 +79,7 @@ export function withTranslationDirectory(
 ): Middleware<LocaleOptions> {
   const glob = require('glob');
   const sync = glob.sync as (pattern: string, options: any) => string[];
-  const [pattern, names] = regex(
+  const [regex, names] = pattern(
     options.pattern || '{{namespace}}.{{locale}}.(json|yaml|yml)',
   );
 
@@ -91,7 +88,7 @@ export function withTranslationDirectory(
       cwd: directory,
       absolute: true,
     })
-      .map(path => ({ path, match: relative(directory, path).match(pattern) }))
+      .map(path => ({ path, match: relative(directory, path).match(regex) }))
       .filter(({ match }) => match !== null)
       .map(({ path, match }) => {
         const namespace = (match as string[])[names.indexOf('namespace') + 1];
@@ -103,5 +100,3 @@ export function withTranslationDirectory(
       }),
   );
 }
-
-//
