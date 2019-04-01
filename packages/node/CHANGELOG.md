@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.4...@translata/node@0.2.5) (2019-04-01)
+
+
+### Cleanup
+
+* Simplify filesystem middlewares ([cf58e0ecdf5de203fe6bc18880a619f22f7ccfc1](https://github.com/jeanfortheweb/translata/commit/cf58e0ecdf5de203fe6bc18880a619f22f7ccfc1))
+
+
+
+
+
 ## [0.2.4](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.3...@translata/node@0.2.4) (2019-03-30)
 
 
