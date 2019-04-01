@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/jeanfortheweb/translata/compare/@translata/core@0.3.0...@translata/core@0.3.1) (2019-04-01)
+
+
+### Docs
+
+* Add inline docs for the core package ([34ae73740498c67a7a132e6154e7f877c485380f](https://github.com/jeanfortheweb/translata/commit/34ae73740498c67a7a132e6154e7f877c485380f))
+* Add TOC to documentations ([812758833191a8b067d5437c24552a418a4434b5](https://github.com/jeanfortheweb/translata/commit/812758833191a8b067d5437c24552a418a4434b5))
+
+### Update
+
+* Package json metadata ([780bc4d2e6e3a8ea78a77b34c5f52fe1c63222d9](https://github.com/jeanfortheweb/translata/commit/780bc4d2e6e3a8ea78a77b34c5f52fe1c63222d9))
+
+
+
+
+
 # [0.3.0](https://github.com/jeanfortheweb/translata/compare/@translata/core@0.0.1...@translata/core@0.3.0) (2019-04-01)
 
 

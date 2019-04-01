@@ -1,6 +1,6 @@
 {
   "name": "@translata/core",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Core functionality for translata: The Composable Translation Utility",
   "license": "MIT",
   "repository": "github:jeanfortheweb/translata",

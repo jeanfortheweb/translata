@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.5...@translata/node@0.2.6) (2019-04-01)
+
+
+### Docs
+
+* Add inline docs for the node package ([3cb6639dfef64ca6d1833863bf5b5e14dc221684](https://github.com/jeanfortheweb/translata/commit/3cb6639dfef64ca6d1833863bf5b5e14dc221684))
+* Add TOC to documentations ([812758833191a8b067d5437c24552a418a4434b5](https://github.com/jeanfortheweb/translata/commit/812758833191a8b067d5437c24552a418a4434b5))
+
+### Update
+
+* Package json metadata ([780bc4d2e6e3a8ea78a77b34c5f52fe1c63222d9](https://github.com/jeanfortheweb/translata/commit/780bc4d2e6e3a8ea78a77b34c5f52fe1c63222d9))
+
+
+
+
+
 ## [0.2.5](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.4...@translata/node@0.2.5) (2019-04-01)
 
 
