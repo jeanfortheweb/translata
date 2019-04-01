@@ -1,6 +1,6 @@
 ---
-name: For Bugs and Features
-about: For Bugs and Features
+name: Bug or Feature
+about: Use this to report a bug or propose a feature
 title: ''
 labels: ''
 assignees: ''
