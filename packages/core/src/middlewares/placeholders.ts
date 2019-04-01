@@ -29,7 +29,7 @@ export function withPlaceholders(values = {}): Middleware<PlaceholderOptions> {
       ...options.values,
     };
 
-    if (translated) {
+    if (translated !== undefined) {
       return Object.entries(merged).reduce(
         (replaced, [name, value]) =>
           replaced.replace(
@@ -38,6 +38,46 @@ export function withPlaceholders(values = {}): Middleware<PlaceholderOptions> {
           ),
         translated,
       );
+    }
+
+    return translated;
+  };
+}
+
+export interface CountableOptions {
+  count?: number;
+}
+
+export function withPluralizer(): Middleware<
+  CountableOptions & PlaceholderOptions
+> {
+  return next => (id, options) => {
+    const translated = next(id, {
+      ...options,
+      values: {
+        ...options.values,
+        count: options.count,
+      },
+    });
+
+    if (options.count !== undefined && translated !== undefined) {
+      const strings = translated
+        .split(/\s+\|\|\s+/)
+        .map(partial => partial.trim());
+
+      const [none] = strings;
+      const [, one = none] = strings;
+      const [, , many = one] = strings;
+
+      if (options.count === 0) {
+        return none;
+      }
+
+      if (options.count === 1) {
+        return one;
+      }
+
+      return many;
     }
 
     return translated;
