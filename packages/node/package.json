@@ -1,15 +1,26 @@
 {
   "name": "@translata/node",
   "version": "0.2.5",
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
+  "description": "Node functionality for translata: The Composable Translation Utility",
   "license": "MIT",
-  "files": [
-    "lib"
+  "repository": "github:jeanfortheweb/translata",
+  "keywords": [
+    "translation",
+    "i18n",
+    "typescript",
+    "functional"
   ],
+  "engines": {
+    "node": ">= 10.15.3"
+  },
   "publishConfig": {
     "access": "public"
   },
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "files": [
+    "lib"
+  ],
   "peerDependencies": {
     "@translata/core": "^0.2.0",
     "glob": "^7.1.3",

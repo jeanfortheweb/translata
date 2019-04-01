@@ -1,15 +1,26 @@
 {
   "name": "@translata/core",
   "version": "0.3.0",
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
+  "description": "Core functionality for translata: The Composable Translation Utility",
   "license": "MIT",
-  "files": [
-    "lib"
+  "repository": "github:jeanfortheweb/translata",
+  "keywords": [
+    "translation",
+    "i18n",
+    "typescript",
+    "functional"
   ],
+  "engines": {
+    "node": ">= 10.15.3"
+  },
   "publishConfig": {
     "access": "public"
   },
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "compile:cjs": "rm -rf lib/cjs && tsc --p tsconfig.cjs.json",
     "compile:esm": "rm -rf lib/esm && tsc --p tsconfig.esm.json"

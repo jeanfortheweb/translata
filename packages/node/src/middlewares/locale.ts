@@ -1,5 +1,8 @@
 import { Middleware, LocaleOptions } from '@translata/core';
 
+/**
+ * Enables automatic locale detection based on the current system.
+ */
 export function withSystemLocale(): Middleware<LocaleOptions> {
   const { LC_ALL, LC_MESSAGES, LANG, LANGUAGE } = process.env;
 

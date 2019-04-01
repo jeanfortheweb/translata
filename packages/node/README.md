@@ -1,16 +1,20 @@
-# @translata/node
+# @translata/node <!-- omit in toc -->
 
 Provides middlewares focused on node usage.
 
-## Installation
+## Installation <!-- omit in toc -->
 
 ```sh
 yarn add @translata/core @translata/node
 ```
 
-## Documentation
+## Documentation <!-- omit in toc -->
 
-### `withTranslationFile(locale: string, path:string)`
+- [withTranslationFile](#withtranslationfile)
+- [withTranslationDirectory](#withtranslationdirectory)
+- [withSystemLocale](#withsystemlocale)
+
+### withTranslationFile
 
 Reads translations from the given file and stores them for the given locale.
 Currently json and yaml files are supported.
@@ -42,7 +46,7 @@ _('global.hello', { locale: 'en' }); // Hello User!
 _('global.bye', { locale: 'de' }); // Tschüss Benutzer!
 ```
 
-### `withTranslationDirectory(directory: string, options: { pattern?: string })`
+### withTranslationDirectory
 
 Loads translation files from a directory, detecting namespacing and locales.
 By default, the middleware will check for files in the given directory that matches the pattern `{{namespace}}.{{locale}}.(json|yaml|yml)`. So, a valid file name would be like `global.en.json`.
@@ -98,7 +102,7 @@ const _ = createTranslator(
 );
 ```
 
-### `withSystemLocale()`
+### withSystemLocale
 
 Detects the system locale and sets it as value option for the following middlewares.
 

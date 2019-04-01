@@ -53,6 +53,13 @@ function pattern(pattern: string): [string, string[]] {
   return [regex, names];
 }
 
+/**
+ * Injects translation strings using the given file for the given locale.
+ * JSON and YAML files are currently supported.
+ *
+ * @param locale Locale to set translations for.
+ * @param path Path to translation file.
+ */
 export function withTranslationFile(
   locale: string,
   path: string,
@@ -60,14 +67,39 @@ export function withTranslationFile(
   return withTranslations(locale, load(path));
 }
 
+/**
+ * Options used by the `withTranslationDirectory` middleware.
+ *
+ * @see withTranslationDirectory
+ */
 export interface TranslationDirectoryOptions {
+  /**
+   * Custom pattern for resolving translation files
+   * inside a directory.
+   *
+   * @default {{namespace}}.{{locale}}.(json|yaml|yml)
+   */
   pattern?: string;
 }
 
+/**
+ * Injects translation strings by scanning the given directory for translation files.
+ *
+ * @param directory Directory to scan.
+ */
 export function withTranslationDirectory(
   directory: string,
 ): Middleware<LocaleOptions>;
 
+/**
+ * Injects translation strings by scanning the given directory for translation files and
+ * custom options.
+ *
+ * Currently, only the pattern for file resolving can be customized.
+ *
+ * @param directory Directory to scan.
+ * @param options Options.
+ */
 export function withTranslationDirectory(
   directory: string,
   options: TranslationDirectoryOptions,
