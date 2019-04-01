@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.3...@translata/node@0.2.4) (2019-03-30)
+
+
+### Fix
+
+* Require yaml when its needed ([77f74bd798e9f654782529fc01ec03bf2224ac83](https://github.com/jeanfortheweb/translata/commit/77f74bd798e9f654782529fc01ec03bf2224ac83))
+
+
+
+
+
+## [0.2.3](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.2...@translata/node@0.2.3) (2019-03-30)
+
+
+### Fix
+
+* Require yaml and glob only when required ([b51b4270129dd5bc67d04a14a073b5d8b45a5ba0](https://github.com/jeanfortheweb/translata/commit/b51b4270129dd5bc67d04a14a073b5d8b45a5ba0))
+
+
+
+
+
+## [0.2.2](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.1...@translata/node@0.2.2) (2019-03-30)
+
+
+### Fix
+
+* Dependency versions ([0523ac5b18ee4018f7fc2db0424e45f91395a7cb](https://github.com/jeanfortheweb/translata/commit/0523ac5b18ee4018f7fc2db0424e45f91395a7cb))
+* Remove unused peer dependecies ([5f88c56cecbf3f8b8b2d1ed96661c788c189cf07](https://github.com/jeanfortheweb/translata/commit/5f88c56cecbf3f8b8b2d1ed96661c788c189cf07))
+
+
+
+
+
 ## [0.2.2](https://github.com/jeanfortheweb/translata/compare/@translata/node@0.2.1...@translata/node@0.2.2) (2019-03-30)
 
 

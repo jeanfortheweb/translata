@@ -1,4 +1,4 @@
-import { withPlaceholders } from '../placeholders';
+import { withPlaceholders, withPluralizer } from '../placeholders';
 
 describe('withPlaceholders', () => {
   it('should replace values in translation strings', () => {
@@ -105,4 +105,37 @@ describe('withPlaceholders', () => {
       locale: 'en',
     });
   });
+});
+
+describe('withPluralizer', () => {
+  it.each`
+    count | string                               | translation
+    ${0}  | ${'no cats'}                         | ${'no cats'}
+    ${0}  | ${'no cats || one cat'}              | ${'no cats'}
+    ${0}  | ${'no cats || one cat || many cats'} | ${'no cats'}
+    ${4}  | ${'no cats || {{count}} cats'}       | ${'{{count}} cats'}
+    ${1}  | ${'no cats || one cat || many cats'} | ${'one cat'}
+    ${3}  | ${'no cats || one cat || many cats'} | ${'many cats'}
+    ${3}  | ${undefined}                         | ${undefined}
+  `(
+    'should output "$translation" with count $count and string "$string"',
+    ({ count, string, translation }) => {
+      const next = jest.fn(() => string);
+      const middleware = withPluralizer();
+
+      const translated = middleware(next)('translation.id', {
+        locale: 'en',
+        count,
+      });
+
+      expect(translated).toEqual(translation);
+      expect(next).toHaveBeenCalledWith('translation.id', {
+        locale: 'en',
+        count,
+        values: {
+          count,
+        },
+      });
+    },
+  );
 });

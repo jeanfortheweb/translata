@@ -227,3 +227,43 @@ const _ = createTranslator(
 
 _('global.greeting', { locale: 'en' }); // PLEASE IMPLEMENT ME ON LOCALE "en": global.greeting
 ```
+
+### `withPluralizer()`
+
+Allows pluralization of translations. The translations string has to be separated up to three times as shown below.
+The resulting translation is based on the count which gets passed in the translator options:
+
+```ts
+import { createTranslator, withPluralizer } from '@translata/core';
+
+const _ = createTranslator(
+  withTranslations('en', {
+    'pluralized.cats': 'no cats || one cat || many cats',
+  }),
+  withPluralizer(),
+);
+
+_('pluralized.cats', { locale: 'en', count: 3 }); // many cats
+```
+
+Since the pluralizer will pass the count as `count` placeholder to the `values` options of `withPlaceholers`, you can even use the actual count and/or other placeholders in your string:
+
+```ts
+import {
+  createTranslator,
+  withPluralizer,
+  withPlaceholders,
+} from '@translata/core';
+
+const _ = createTranslator(
+  withTranslations('en', {
+    'pluralized.messages': 'no messages || one message || {{count}} messages',
+  }),
+  withPlaceholders(),
+  withPluralizer(),
+);
+
+_('pluralized.messages', { locale: 'en', count: 3 }); // 3 messages
+_('pluralized.messages', { locale: 'en', count: 0 }); // no messages
+_('pluralized.messages', { locale: 'en', count: 1 }); // one message
+```
