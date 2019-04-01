@@ -1,17 +1,26 @@
-# @translata/core
+# @translata/core <!-- omit in toc -->
 
 Provides the core functionality for **Translata**. This includes the actual factory function `createTranslator`
 as basic middlewares for locales, translations and placeholder patterns.
 
-## Installation
+## Installation <!-- omit in toc -->
 
 ```sh
 yarn add @translata/core
 ```
 
-## Documentation
+## Documentation <!-- omit in toc -->
 
-### `createTranslator(...middlewares: Middleware[])`
+- [createTranslator](#createtranslator)
+- [withTranslations](#withtranslations)
+- [withDefaultLocale](#withdefaultlocale)
+- [withFallbackLocale](#withfallbacklocale)
+- [withFallbackTranslation](#withfallbacktranslation)
+- [withPlaceholders](#withplaceholders)
+- [withLogger](#withlogger)
+- [withPluralizer](#withpluralizer)
+
+### createTranslator
 
 Create a translator function from middlewares. The order of middlewares matters.
 As a rule of thumb you should order them:
@@ -32,38 +41,7 @@ const _ = createTranslator(
 _('user.greeting', { locale: 'en' }); // Welcome to Translata!
 ```
 
-### `withDefaultLocale(locale: string)`
-
-Sets a default locale when no other is given.
-
-```ts
-import { createTranslator, withDefaultLocale } from '@translata/core';
-
-const _ = createTranslator(withDefaultLocale('en'));
-
-_('translation_id'); // { locale: 'en' } will be present in options.
-_('translation_id', { locale: 'fr' }); // { locale: 'fr' } will be present in options.
-```
-
-### `withFallbackLocale(locale: string)`
-
-Overrides the current locale present when the translation resulted in `undefined`.
-
-```ts
-import { createTranslator, withDefaultLocale } from '@translata/core';
-
-const _ = createTranslator(
-  withTranslations('en', {
-    'user.greeting': 'Welcome to Translata!',
-  }),
-  withFallbackLocale('en'),
-);
-
-_('user.greeting', { locale: 'fr' }); // { locale: 'en' } will be used and result in "Welcome to Translata!"
-_('user.greeting', { locale: 'fr', fallback: 'en' }); // Fallback can also be set in options and has priority.
-```
-
-### `withTranslations(locale: string, translations: { [key: string]: string})`
+### withTranslations
 
 Injects translation strings.
 It takes the target locale and a map of translation strings, where the key is the translation id.
@@ -90,7 +68,55 @@ _('user.greeting', { locale: 'de' }); // Willkommen bei Translata!
 _('user.greeting', { locale: 'fr' }); // undefined
 ```
 
-### `withPlaceholders(values?: { [key: string]: any })`
+### withDefaultLocale
+
+Sets a default locale when no other is given.
+
+```ts
+import { createTranslator, withDefaultLocale } from '@translata/core';
+
+const _ = createTranslator(withDefaultLocale('en'));
+
+_('translation_id'); // { locale: 'en' } will be present in options.
+_('translation_id', { locale: 'fr' }); // { locale: 'fr' } will be present in options.
+```
+
+### withFallbackLocale
+
+Overrides the current locale present when the translation resulted in `undefined`.
+
+```ts
+import { createTranslator, withDefaultLocale } from '@translata/core';
+
+const _ = createTranslator(
+  withTranslations('en', {
+    'user.greeting': 'Welcome to Translata!',
+  }),
+  withFallbackLocale('en'),
+);
+
+_('user.greeting', { locale: 'fr' }); // { locale: 'en' } will be used and result in "Welcome to Translata!"
+_('user.greeting', { locale: 'fr', fallback: 'en' }); // Fallback can also be set in options and has priority.
+```
+
+### withFallbackTranslation
+
+When a translation is missing, the given translate callback is used to determine a fallback translation string.
+
+```ts
+import { createTranslator, withFallbackTranslation } from '@translata/core';
+
+const _ = createTranslator(
+  withFallbackTranslation(
+    (id, options) =>
+      `PLEASE IMPLEMENT ME ON LOCALE "${options.locale}": ${id} `,
+  ),
+);
+
+_('global.greeting', { locale: 'en' }); // PLEASE IMPLEMENT ME ON LOCALE "en": global.greeting
+```
+
+### withPlaceholders
 
 Gives translation strings the ability to contain placeholders.
 This middleware should always come after middlewares that find translation strings or manipulate locales.
@@ -185,7 +211,7 @@ const _ = createTranslator(
 _('goto.user', { context: 124 }); // Watch the profile here: http://www.my-community.com/users/124
 ```
 
-### `withLogger(logger?: (id: string, options: LocaleOptions) => void)`
+### withLogger
 
 Will log missing translations with `console.warn`.
 
@@ -211,24 +237,7 @@ const _ = createTranslator(
 _('global.greeting', { locale: 'en' }); // Will log: No translation for global.greeting (locale = en)!
 ```
 
-### `withFallbackTranslation(translate: (id: string, options: LocaleOptions) => string)`
-
-When a translation is missing, the given translate callback is used to determine a fallback translation string.
-
-```ts
-import { createTranslator, withFallbackTranslation } from '@translata/core';
-
-const _ = createTranslator(
-  withFallbackTranslation(
-    (id, options) =>
-      `PLEASE IMPLEMENT ME ON LOCALE "${options.locale}": ${id} `,
-  ),
-);
-
-_('global.greeting', { locale: 'en' }); // PLEASE IMPLEMENT ME ON LOCALE "en": global.greeting
-```
-
-### `withPluralizer()`
+### withPluralizer
 
 Allows pluralization of translations. The translations string has to be separated up to three times as shown below.
 The resulting translation is based on the count which gets passed in the translator options:
