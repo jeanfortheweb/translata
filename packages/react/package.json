@@ -1,6 +1,6 @@
 {
   "name": "@translata/react",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "React integration for translata: The Composable Translation Utility",
   "license": "MIT",
   "repository": "github:jeanfortheweb/translata",
