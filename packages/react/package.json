@@ -1,0 +1,41 @@
+{
+  "name": "@translata/react",
+  "version": "0.0.0",
+  "description": "React integration for translata: The Composable Translation Utility",
+  "license": "MIT",
+  "repository": "github:jeanfortheweb/translata",
+  "keywords": [
+    "translation",
+    "i18n",
+    "typescript",
+    "functional",
+    "react",
+    "hooks"
+  ],
+  "engines": {
+    "node": ">= 10.15.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "compile:cjs": "rm -rf lib/cjs && tsc --p tsconfig.cjs.json",
+    "compile:esm": "rm -rf lib/esm && tsc --p tsconfig.esm.json"
+  },
+  "peerDependencies": {
+    "react": "^16.10.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.1.2",
+    "@testing-library/react": "^9.3.0",
+    "@translata/core": "^0.3.1",
+    "@types/react": "^16.9.9",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  }
+}
