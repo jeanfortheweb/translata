@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should change provide the current locale: locale 1`] = `
+<div
+  data-testid="div"
+>
+  en
+</div>
+`;
+
+exports[`should change the locale: german 1`] = `
+<div
+  data-testid="div"
+>
+  Hallo Benutzer
+</div>
+`;
+
+exports[`should setup a working provider: english 1`] = `
+<div
+  data-testid="div"
+>
+  Hello User
+</div>
+`;

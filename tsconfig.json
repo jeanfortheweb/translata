@@ -2,6 +2,7 @@
   "compilerOptions": {
     "strict": true,
     "downlevelIteration": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "jsx": "react"
   }
 }

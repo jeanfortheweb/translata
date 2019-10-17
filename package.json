@@ -2,7 +2,8 @@
   "private": true,
   "workspaces": [
     "packages/core",
-    "packages/node"
+    "packages/node",
+    "packages/react"
   ],
   "scripts": {
     "test": "jest --coverage"
@@ -20,7 +21,7 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "testPathIgnorePatterns": [
       "/__template__/"
     ],
