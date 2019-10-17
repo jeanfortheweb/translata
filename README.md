@@ -60,3 +60,4 @@ For a full documentation, just checkout the `README.md` files for each package, 
 
 - [@translata/core](./packages/core/README.md)
 - [@translata/node](./packages/node/README.md)
+- [@translata/react](./packages/react/README.md)
