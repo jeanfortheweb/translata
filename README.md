@@ -5,7 +5,7 @@
 **Translata** was created when I struggled with the current i18n utilities avaible. They seem outdated, had features I don't need, or where unusable (in a smooth way) in modular environments. So I decided to create a utility based on functional principles with some simple goals:
 
 - **Modular** - Decide which features you need and in which environment.
-- **Independend** - No global scope, no mutations, no singletons. Create as many translators as you like.
+- **Independent** - No global scope, no mutations, no singletons. Create as many translators as you like.
 - **Easy** - It should be possible to mix and match a setup with minimal effort.
 
 **Translata** is completely written in TypeScript and supports advanced typings.
